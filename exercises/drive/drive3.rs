@@ -3,7 +3,7 @@
 // Execute `rustlings hint drive1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 // We look for an environment variable and expect it to fall in a range.
 // look into the testcase to find out the details.
@@ -15,7 +15,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    // use super::*;
 
     #[test]
     fn test_success() {
