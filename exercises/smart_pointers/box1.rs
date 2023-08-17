@@ -18,11 +18,11 @@
 //
 // Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
 
 #[derive(PartialEq, Debug)]
 pub enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),  // Step 1: Use a Box to wrap the recursive List
     Nil,
 }
 
@@ -35,11 +35,12 @@ fn main() {
 }
 
 pub fn create_empty_list() -> List {
-    todo!()
+    List::Nil  // Step 2: Return Nil for an empty list
 }
 
 pub fn create_non_empty_list() -> List {
-    todo!()
+    // Step 2: Create a non-empty list with a Cons variant and a nested Cons with Nil
+    List::Cons(1, Box::new(List::Cons(2, Box::new(List::Nil))))
 }
 
 #[cfg(test)]

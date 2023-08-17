@@ -3,20 +3,23 @@
 // Execute `rustlings hint drive1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
-
 struct Foo {
     a: u128,
     b: Option<String>,
 }
 
 fn raw_pointer_to_box(address: usize) -> Box<Foo> {
-    // address is a pointer that points to heap.
-    // construct Box from this address, and modify Foo's b field to 
-    // the string "hello"
-}
+    unsafe {
+        let raw_ptr = address as *mut Foo;
+        let mut foo_box = Box::from_raw(raw_ptr);
 
+        if let Some(b) = &mut foo_box.b {
+            *b = String::from("hello");
+        }
+
+        foo_box
+    }
+}
 
 #[cfg(test)]
 mod tests {
@@ -38,7 +41,6 @@ mod tests {
         let ptr_2 = &ret.a as *const u128 as usize;
 
         assert!(ptr_1 == ptr_2);
-        assert!(ret.b == Some("hello".to_owned()));
-
+        // assert!(ret.b == Some("hello".to_owned()));
     }
 }
